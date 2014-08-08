@@ -1,0 +1,19 @@
+extends layout
+
+block append script
+
+block content
+	.row
+		.col-sm-12
+			h1 Lists
+			h3 My lists
+			ul
+				each list in myLists
+					li
+						a(href='/list/'+list._id) #{list.name}
+			hr
+			h3 Lists I'm in
+			ul
+				each list in inLists
+					li
+						a(href='/list/'+list._id+'/'+list.name) #{list.name}
