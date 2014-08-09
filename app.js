@@ -16,15 +16,17 @@ var RedisStore = require('connect-redis')(session);
 require('./app/auth')(passport);
 
 // all environments
-app.set('port', process.env.PORT || 3000);
+//app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+
 app.use(favicon());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
-//app.use(express.methodOverride());
 app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.use(session({
 	store: new RedisStore(),
 	secret: 'SEKR37ly',
@@ -33,14 +35,14 @@ app.use(session({
 }))
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(express.static(path.join(__dirname, 'public')));
 
 require('./app/routes/index')(app, passport);
 require('./app/routes/home')(app, passport);
 require('./app/routes/gifts')(app);
 require('./app/routes/lists')(app);
 
-module.exports = app;
-//var server = http.createServer(app).listen(app.get('port'), function () {
-//	console.log('Express server listening on port ' + app.get('port'));
-//});
+app.set('port', process.env.PORT || 3000);
+
+var server = app.listen(app.get('port'), function () {
+	debug('Express server listening on port ' + server.address().port);
+});
