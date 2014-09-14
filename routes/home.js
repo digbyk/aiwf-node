@@ -12,7 +12,6 @@ module.exports = function (app) {
 			[
 
 			function (callback) {
-
 					List.find({
 						owner: req.user._id
 					}, function (err, list) {
