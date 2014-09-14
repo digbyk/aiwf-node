@@ -1,8 +1,13 @@
-var configAuth = require('../config/auth');
+var conf = require('nconf');
+conf.argv()
+	.env()
+	.file({
+		file: './config.json'
+	});
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 var mongoose = require('mongoose');
-var User = mongoose.model('User');
+var User = require('./model/user');
 
 module.exports = function (passport) {
 
@@ -15,9 +20,9 @@ module.exports = function (passport) {
 	});
 
 	passport.use(new GoogleStrategy({
-			clientID: configAuth.googleAuth.clientID,
-			clientSecret: configAuth.googleAuth.clientSecret,
-			callbackURL: "http://localhost:3000/auth/google/callback"
+			clientID: conf.get('auth:google:clientID'),
+			clientSecret: conf.get('auth:google:clientSecret'),
+			callbackURL: conf.get('auth:google:callbackURL')
 		},
 		function (req, token, tokenSecret, profile, done) {
 			process.nextTick(function () {

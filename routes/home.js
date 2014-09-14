@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
-var List = mongoose.model('List');
-var Gift = mongoose.model('Gift');
+var List = require('../model/list');
+var Gift = require('../model/gift');
 
 var async = require('async');
 

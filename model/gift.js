@@ -26,3 +26,5 @@ var giftSchema = mongoose.Schema({
 });
 
 var Gift = mongoose.model('Gift', giftSchema);
+
+module.exports = Gift;

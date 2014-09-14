@@ -16,7 +16,7 @@ module.exports = function (app) {
 		}
 	});
 
-	app.get('/gifts/:eventId', function (req, res) {
+	app.get('/gifts/:giftId', function (req, res) {
 		if (req.user) {
 			console.log(req.params.eventId);
 			Gift.find({

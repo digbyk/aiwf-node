@@ -1,12 +1,21 @@
-var mongoose = require('mongoose');
-var url = 'mongodb://node:node@ds057548.mongolab.com:57548/aiwf';
+var conf = require('nconf');
+conf.argv()
+	.env()
+	.file({
+		file: './config.json'
+	});
+var url = conf.get('db:url');
+console.log(url);
 
-//mongoose.connect('mongodb://localhost/aiwf');
+var mongoose = require('mongoose');
+
 mongoose.connect(url, {
 	server: {
 		auto_reconnect: true
 	}
 });
+
+// That's the main bits done
 
 mongoose.connection.on('connected', function () {
 	console.log('Mongoose connected');
@@ -31,7 +40,3 @@ process.on('SIGINT', function () {
 		process.exit(0);
 	});
 });
-
-require('./user');
-require('./gift');
-require('./list');
