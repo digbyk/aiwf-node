@@ -7,7 +7,9 @@ var async = require('async');
 module.exports = function (app) {
 
 	app.get('/home', function (req, res) {
-		var model = {};
+		var model = {
+			user: req.user
+		};
 		async.parallel(
 			[
 
