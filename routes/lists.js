@@ -106,7 +106,9 @@ module.exports = function (app) {
 	});
 
 	app.get('/list/:listId/:listName?', isLoggedIn, function (req, res) {
-		var model = {};
+		var model = {
+			user: req.user
+		};
 		async.parallel(
 			[
 

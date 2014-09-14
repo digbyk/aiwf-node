@@ -8,6 +8,7 @@ module.exports = function (app) {
 		if (req.user) {
 			Gift.find().populate('enteredBy boughtBy', 'name').exec(function (err, gifts) {
 				res.render('gifts', {
+					user: req.user,
 					gifts: gifts
 				});
 			});

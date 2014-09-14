@@ -1,6 +1,6 @@
 'use strict';
 
-var rabbitModule = angular.module('RabbitModule', ['ngRoute']);
+var aiwfModule = angular.module('AiwfModule', ['ngRoute']);
 
 rabbitModule.factory('socket', function ($rootScope) {
 	var socket = io.connect('http://localhost');
@@ -29,14 +29,14 @@ rabbitModule.factory('socket', function ($rootScope) {
 rabbitModule.config(['$routeProvider',
 	function ($routeProvider) {
 		$routeProvider.when('/', {
-			controller: 'RabbitController',
+			controller: 'AiwfController',
 			templateUrl: 'views/index.html'
 		}).otherwise({
 			redirectTo: '/'
 		});
 }]);
 
-rabbitModule.controller('RabbitController', ['$rootScope', '$scope', 'socket',
+rabbitModule.controller('AiwfController', ['$rootScope', '$scope', 'socket',
 		function ($rootScope, $scope, socket) {
 
 		var stocks = ["IBM", "SDR"];

@@ -6,7 +6,7 @@ var async = require('async');
 
 module.exports = function (app) {
 
-	app.get('/home', function (req, res) {
+	app.get('/home', isLoggedIn, function (req, res) {
 		var model = {
 			user: req.user
 		};
@@ -35,5 +35,13 @@ module.exports = function (app) {
 				res.render('home', model);
 			});
 	});
+
+	function isLoggedIn(req, res, next) {
+		if (req.user) {
+			next();
+		} else {
+			res.redirect('/');
+		}
+	}
 
 }

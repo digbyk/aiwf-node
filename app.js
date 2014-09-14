@@ -48,6 +48,7 @@ require('./routes/index')(app, passport);
 require('./routes/home')(app, passport);
 require('./routes/gifts')(app);
 require('./routes/lists')(app);
+require('./routes/api')(app);
 
 app.set('port', process.env.PORT || 3000);
 
