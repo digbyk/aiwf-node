@@ -46,6 +46,7 @@ module.exports = function (passport) {
 						user.lastLoggedIn = Date.now();
 						user.email = profile.emails[0].value;
 						user.name = profile.displayName;
+						user.google = profile;
 						user.save(function (err) {
 							if (err) console.log(err);
 							return done(err, user);

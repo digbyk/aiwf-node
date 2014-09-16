@@ -50,6 +50,10 @@ require('./routes/gifts')(app);
 require('./routes/lists')(app);
 require('./routes/api')(app);
 
+app.use(function (req, res, next) {
+	res.send(404, 'Sorry cant find that!');
+});
+
 app.set('port', process.env.PORT || 3000);
 
 var server = app.listen(app.get('port'), function () {
