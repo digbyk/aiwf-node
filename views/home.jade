@@ -8,7 +8,7 @@ block content
 			if user
 				h1 Welcome back #{user.name}
 	.row
-		.col-sm-4
+		.col-sm-6
 			h3 Lists I own
 			table
 				thead
@@ -38,7 +38,7 @@ block content
 							a(href='/list/new', class='btn btn-primary btn-sm')
 								i(class='fa fa-list-alt')
 								span New list
-		.col-sm-4
+		.col-sm-6
 			h3 Lists I'm on
 			table
 				thead
@@ -49,13 +49,19 @@ block content
 						tr
 							td
 								a(href='/list/'+list._id+'/'+list.name) #{list.name}
-		.col-sm-4
-			h3 Blah
+	.row
+		.col-sm-6
+			h3 Lists I own
 			table(ng-controller="GiftController")
 				thead
 					tr
-						th List
+						th List name
 				tbody
-					tr(ng-repeat="gift in gifts")
+					tr(ng-repeat="list in lists")
 						td
-							a(href='/list/') {{gift.name}}
+							a(href='/list/{{list._id}}/{{list._name}}') {{list.name}}
+				tfoot
+					tr
+						td
+							input(placeholder="New gift")
+
