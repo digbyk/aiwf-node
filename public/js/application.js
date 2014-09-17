@@ -1,10 +1,18 @@
-var aiwfApp = angular.module('AiwfApp', []);
+var aiwfApp = angular.module('AiwfApp', ['ngResource']);
 
-aiwfApp.controller('GiftController', function ($scope, $http) {
-	$http.get('/api/lists').success(function (data) {
-		$scope.lists = data;
-	});
-	$http.get('/api/gifts').success(function (data) {
-		$scope.gifts = data;
-	});
+aiwfApp.factory('ListService', ['$resource',
+	function ($resource) {
+		return $resource('/api/lists', {}, {
+			query: {
+				method: 'GET',
+				params: {
+					listId: 'lists'
+				},
+				isArray: true
+			}
+		});
+}]);
+
+aiwfApp.controller('GiftController', function ($scope, $http, ListService) {
+	$scope.lists = ListService.query();
 });
