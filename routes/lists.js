@@ -10,11 +10,9 @@ module.exports = function (app) {
 		List.find({
 			owner: req.user._id
 		}, function (err, myLists) {
-			console.log(myLists);
 			List.find({
 				members: req.user._id
 			}, function (err, inLists) {
-				console.log(inLists);
 				res.render('lists', {
 					user: req.user,
 					myLists: myLists,
@@ -25,7 +23,9 @@ module.exports = function (app) {
 	});
 
 	app.get('/list/new', isLoggedIn, function (req, res) {
-		var model = {};
+		var model = {
+			user: req.user
+		};
 		res.render('list/new', model);
 	});
 
@@ -38,14 +38,13 @@ module.exports = function (app) {
 		list.joinId = new mongoose.Types.ObjectId;
 		list.notes = req.body.notes;
 
-		console.log(list);
 		List.create(list, function (err, user) {
 			if (err) {
 				console.log(err);
-				return res.redirect('/home?error=deleting');
+				return res.redirect('/lists?error=deleting');
 			}
 			console.log("list created and saved: " + list);
-			res.redirect('/home');
+			res.redirect('/lists');
 		});
 	});
 
@@ -58,10 +57,10 @@ module.exports = function (app) {
 			function (err, list) {
 				if (err) {
 					console.log(err);
-					return res.redirect('/home?error=deleting');
+					return res.redirect('/lists?error=deleting');
 				}
 				console.log("List deleted:", list);
-				res.redirect('/home');
+				res.redirect('/lists');
 			}
 		);
 	});

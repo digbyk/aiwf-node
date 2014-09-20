@@ -29,24 +29,18 @@ html(lang="en", ng-app="AiwfApp")
 					ul.nav.navbar-nav
 						if user
 							li
-								a(href='link') Wanted
+								a(href='/lists') My lists
 							li
 								a(href='/gifts') My gifts
-							li
-								a(href='/lists') My lists
 					ul.nav.navbar-nav.navbar-right
 						if !user
 							li
 								a(href='/auth/google') Google login
 						if user
 							li
-								a(href='#', class='dropdown-toggle', data-toggle='dropdown') #{user.name}
-									b.caret
-								ul.dropdown-menu
-									li
-										a(href='/auth/profile') Profile
-									li
-										a(href='/auth/logout') Logout
+								a(href='/auth/profile') #{user.name}
+							li
+								a(href='/auth/logout') Logout
 		div.container.main
 			block content
 

@@ -15,7 +15,7 @@ h3,
 h4 {
 	font-family: Lato, "Lucida Grande", Helvetica, Arial, sans-serif;
 	font-weight: bold;
-	color: #7E8F7C;
+	color: #C63D0F;
 }
 h1 {
 	font-size: 1.4em;
@@ -72,4 +72,13 @@ i.fa {
 }
 .navbar .navbar-brand {
 	color: #eee;
+}
+.fa-info-circle {
+	color: #008;
+}
+.fa-edit {
+	color: #0a0;
+}
+.fa-times {
+	color: #a00;
 }

@@ -24,11 +24,11 @@ module.exports = function (app, passport) {
 
 	app.get('/', function (req, res) {
 		if (req.user) {
-			console.info('USER');
-			res.redirect('/home');
+			res.render('home', {
+				user: req.user
+			});
 		} else {
-			console.info('No USER');
-			res.render('default');
+			res.render('index');
 		}
 	});
 
